@@ -1,0 +1,27 @@
+service: dividend-job
+
+custom:
+  settings:
+    DIVIDENS_TABLE: Dividens
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  environment: ${self:custom.settings}
+  iamRoleStatements:
+   - Effect: "Allow"
+     Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+     Resource:
+      - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.DIVIDENS_TABLE}"
+
+functions:
+  hello:
+    handler: handler.hello
+
