@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/DSJ-23/Dividen_serverless_job/issues"
   },
-  "homepage": "https://github.com/DSJ-23/Dividen_serverless_job#readme"
+  "homepage": "https://github.com/DSJ-23/Dividen_serverless_job#readme",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
 }
