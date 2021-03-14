@@ -26,3 +26,13 @@ Invoke with custom payload
 ```
 aws lambda invoke --function-name dividend-job-dev-hello --cli-binary-format raw-in-base64-out --payload '{"id": "14141234", "ticker": "value2", "stock": "aa", "yield": "11dfadf"}' create_eg.json
 ```
+
+To update a single function 
+```
+sls deploy -f getAllInfo
+```
+
+Get All Info invoke
+```
+aws lambda invoke --function-name dividend-job-dev-getAllInfo all.json
+```

@@ -24,4 +24,8 @@ provider:
 functions:
   hello:
     handler: handler.createInstance 
+  getAllInfo:
+    handler: handler.getAllInfo
+  byTicker:
+    handler: handler.byTicker
 

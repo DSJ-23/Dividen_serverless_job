@@ -9,7 +9,7 @@ function response(statusCode, message) {
       statusCode: statusCode,
       body: JSON.stringify(message)
     };
-  }
+}
 
 module.exports.createInstance = (event, context, callback) => {
 
@@ -41,3 +41,32 @@ module.exports.createInstance = (event, context, callback) => {
         })
         .catch(err => response(null, response(err.statusCode, err)))
 }
+
+module.exports.getAllInfo = (event, contenxt, callback) => {
+    return db.scan({
+        TableName: dividens
+    }).promise()
+        .then((res) => {
+            callback(null, response(201, res.Items))
+    })
+        .catch(err => response(null, response(err.statusCode, err)))
+}
+
+module.exports.byTicker = (event, contenxt, callback) => {
+
+    let ticker = event['ticker'] || 'value2';
+    let params = {
+        Key: {
+            'id': "a3b4d184-a58f-428f-a372-ffe5ab324491"
+        },
+        TableName: dividens
+    }
+
+    return db.get(params).promise()
+        .then((res) => {
+            if (res.Item) callback(null, response(200, res.Item));
+            else callback(null, response(404, {error: "Not found"}));
+        })
+        .catch(err => response(null, response(err.statusCode, err)))
+}
+
