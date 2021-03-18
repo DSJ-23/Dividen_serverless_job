@@ -52,12 +52,18 @@ module.exports.getAllInfo = (event, contenxt, callback) => {
         .catch(err => response(null, response(err.statusCode, err)))
 }
 
-module.exports.byTicker = (event, contenxt, callback) => {
+module.exports.getByTicker = (event, contenxt, callback) => {
+    
+}
+
+module.exports.byId= (event, contenxt, callback) => {
 
     let ticker = event['ticker'] || 'value2';
+    console.log(event['id']);
+    console.log('HELLO')
     let params = {
         Key: {
-            'id': "a3b4d184-a58f-428f-a372-ffe5ab324491"
+            'id': event['id'] || "a3b4d184-a58f-428f-a372-ffe5ab324491"
         },
         TableName: dividens
     }
@@ -67,6 +73,18 @@ module.exports.byTicker = (event, contenxt, callback) => {
             if (res.Item) callback(null, response(200, res.Item));
             else callback(null, response(404, {error: "Not found"}));
         })
+        .catch(err => response(null, response(err.statusCode, err)))
+}
+
+module.exports.deleteSingle = (event, context, callback) => {
+    let params = {
+        Key: {
+            id: event['id'] || "a3b4d184-a58f-428f-a372-ffe5ab324491"
+        },
+        TableName: dividens
+    }
+    return db.delete(params).promise()
+        .then(() => callback(null, 200, {message: `post created ${event['id']}`}))
         .catch(err => response(null, response(err.statusCode, err)))
 }
 

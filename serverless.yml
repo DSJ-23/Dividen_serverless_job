@@ -27,5 +27,7 @@ functions:
   getAllInfo:
     handler: handler.getAllInfo
   byTicker:
-    handler: handler.byTicker
+    handler: handler.byId
+  deleteTicker:
+    handler: handler.deleteSingle
 

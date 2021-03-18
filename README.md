@@ -36,3 +36,20 @@ Get All Info invoke
 ```
 aws lambda invoke --function-name dividend-job-dev-getAllInfo all.json
 ```
+
+Get One Invoke example 
+```
+aws lambda invoke --function-name dividend-job-dev-byTicker --cli-binary-format raw-in-base64-out --payload '{"id": "4a25183b-b7cc-4caf-81a1-96f1a6bfae34"}' new.json
+```
+
+Delete invoke 
+```
+aws lambda invoke --function-name dividend-job-dev-deleteTicker --cli-binary-format raw-in-base64-out --payload '{"id": "5668ffc8-0073-4b27-bdf4-8f0f8c3999eb"}' delete.json
+```
+
+To re-deploy a single function
+```
+sls deploy -f FunctionName
+``` 
+
+where the function name is the name of the function in the acutal js/python file
